@@ -6,7 +6,7 @@ public class CalcTime {
     static String cityFrom;
     static String cityTo;
     public static void printTime(){
-        System.out.println("Если ехать из " + cityFrom + " в " + cityTo + " со скоростью " + speed + " км/ч, то " + distance + " км проедем за " + distance/speed + " часов");
+        System.out.println("Если ехать из " + cityFrom + " в " + cityTo + " со скоростью " + speed + " км/ч, то " + distance + " км проедем за " + distance/speed + " часов.");
     }
     public static void MoscowToPiter(){
         CalcTime.distance = 712;
