@@ -7,6 +7,9 @@ public class ReverseDigits {
         int reverse1 = number % 10;
         number = number  / 10;
         int reverse2 = number % 10;
-        return reverse2*100+reverse*10+reverse;
+        return reverse*100+reverse1*10+reverse2;
+    }
+    public static void main(String args[]){
+        System.out.println(reverseDigits(401));
     }
 }
