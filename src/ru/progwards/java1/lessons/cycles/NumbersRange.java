@@ -21,9 +21,8 @@ public class NumbersRange {
         int n = 0;
         for (; start <= finish; start++) {
             n++;
-            if (start % 2 == 0) {
-                result = result + start - (start - n);
-            }
+            if (n % 2 !=0)
+                result = result + start;
         }
         return result;
     }
@@ -31,6 +30,6 @@ public class NumbersRange {
     public static void main(String[] args) {
         System.out.println(sumNumbers(12,22));
         System.out.println(sumOdd(12,22));
-        System.out.println(sumEvenIdx(12,22));
+        System.out.println(sumEvenIdx(43,89));
     }
 }
