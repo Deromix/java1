@@ -49,13 +49,13 @@ public class ComplexNum {
     //  комплексных чисел по формуле:
     // (a + bi) / (c + di) = (a*c + b*d)/(c*c+d*d) + ((b*c - a*d)/(c*c+d*d))i
     {
-        return new ComplexNum((a * num.getA()) + (b * num.getB()) / (num.getA() * num.getA()) + (num.getB() * num.getB()) , (b * num.getA()) - (a * num.getB()) / ((num.getA() * num.getA()) +(num.getB() *num.getB())));
+        return new ComplexNum(((a * num.getA()) + (b * num.getB())) / ((num.getA() * num.getA()) + (num.getB() * num.getB())) , ((b * num.getA()) - (a * num.getB())) / ((num.getA() * num.getA()) +(num.getB() *num.getB())));
     }
 
 
     public static void main(String[] args) {
         ComplexNum div = new ComplexNum(1,56);
         ComplexNum t2 = new ComplexNum(1,56);
-        System.out.println(div);
+        System.out.println(new ComplexNum(1000, 1000).div(new ComplexNum(100, 100)).toString());
     }
 }
