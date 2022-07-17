@@ -9,7 +9,4 @@ public class ReverseDigits {
         int reverse2 = number % 10;
         return reverse*100+reverse1*10+reverse2;
     }
-    public static void main(String args[]){
-        System.out.println(reverseDigits(401));
-    }
 }
