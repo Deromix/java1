@@ -4,17 +4,17 @@ public class CountTest {
 
     public static void testInc(int count) {
         Count c1 = new Count(0);
-        for (; c1.count != count; ) {
-            if (count > 0) {
+        if (c1.count < count) {
+            do {
                 c1.inc();
                 System.out.print(c1.getCount() + " ");
-            }
-            if (count < 0) {
-                c1.dec();
-                System.out.print(c1.getCount() + " ");
-            }
+                if (c1.count == count){
+                    System.out.println();
+                }
+            } while(c1.getCount() != count);
+
         }
-        System.out.println("\nтест inc окончен");
+        System.out.println("тест inc окончен");
     }
 
     public static void testDec(int count) {
@@ -31,21 +31,14 @@ public class CountTest {
             System.out.println();
             System.out.println("тест dec окончен");
         }
-        if (count < 0) {
-            do {
-                count1.inc();
-                System.out.print(count1.getCount() + " ");
-                if (count1.getCount() == 0) {
-                    System.out.println();
-                    System.out.print("count равен 0");
-                }
-            } while (count1.getCount() < 0);
+        if (count <= 0){
+            count1.dec();
+            System.out.print(count1.getCount() + " ");
             System.out.println();
             System.out.println("тест dec окончен");
         }
+
     }
-
-
 
 
 
