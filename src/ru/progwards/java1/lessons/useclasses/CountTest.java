@@ -14,23 +14,42 @@ public class CountTest {
                 System.out.print(c1.getCount() + " ");
             }
         }
-        System.out.println("тест inc окончен");
+        System.out.println("\nтест inc окончен");
     }
 
     public static void testDec(int count) {
-        Count c1 = new Count(2);
-        for (;!c1.dec(); ) {
-                c1.dec();
-                System.out.print(c1.getCount() + " ");
-                if (c1.dec())
-                System.out.println("\ncount равен 0");
-                break;
+        Count count1 = new Count(count);
+        if (count > 0) {
+            do {
+                count1.dec();
+                System.out.print(count1.getCount() + " ");
+                if (count1.getCount() == 0) {
+                    System.out.println();
+                    System.out.print("count равен 0");
+                }
+            } while (count1.getCount() > 0);
+            System.out.println();
+            System.out.println("тест dec окончен");
         }
-        System.out.println("тест dec окончен");
+        if (count < 0) {
+            do {
+                count1.inc();
+                System.out.print(count1.getCount() + " ");
+                if (count1.getCount() == 0) {
+                    System.out.println();
+                    System.out.print("count равен 0");
+                }
+            } while (count1.getCount() < 0);
+            System.out.println();
+            System.out.println("тест dec окончен");
+        }
     }
 
 
+
+
+
     public static void main(String[] args) {
-        testDec(6);
+        testDec(-7);
     }
 }
