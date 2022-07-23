@@ -50,6 +50,12 @@ public class CountTest {
 
 
     public static void main(String[] args) {
-        testDec(-7);
+        testInc(7);
+        testInc(0);
+        testInc(-1);
+        testDec(9);
+        testDec(0);
+        testDec(-5);
+
     }
 }
