@@ -12,11 +12,9 @@ public class TimeZone {
     public TimeZone(int hours, int minutes) {
         this.hours = hours;
         this.minutes = minutes;
-        if (minutes < 0) {
-            minutes = minutes * -1;
-            hours = hours * -1;
-        }
+
     }
+}
 
     class ZonedTime extends Time {
         TimeZone zone;
@@ -36,22 +34,34 @@ public class TimeZone {
             return zone;
         }
 
-
         @Override
         public int secondsBetween(Time time) {
             TimeZone k1 = this.getTimeZone();
             TimeZone k2 = time.getTimeZone();
-            return (k1.hours * 60 * 60 + k1.minutes * 60) - (k2.hours * 60 * 60 + k2.minutes * 60);
+            int sdvigk1, sdvigk2;
+
+            if (k1 == null)
+                sdvigk1 = 0;
+            else
+                sdvigk1 = Math.abs(k1.hours * 60 * 60 + k1.minutes * 60);
+            if (k2 == null)
+                sdvigk2 = 0;
+            else
+                sdvigk2 = Math.abs(k2.hours * 60 * 60 + k2.minutes * 60);
+
+            return super.secondsBetween(time) + Math.abs(sdvigk1 - sdvigk2);
         }
 
 
+
         public static void main(String[] args) {
-            ZonedTime t1 = new ZonedTime(2,4, 4);
+
+            ZonedTime t1 = new ZonedTime(2,4,3);
             ZonedTime t2 = new ZonedTime(1,2,3);
             System.out.println(t1.secondsBetween(t2));
         }
     }
-}
+
 
 
 
