@@ -19,7 +19,7 @@ package ru.progwards.java1.lessons.inheritance;
     }
     @Override
     public String kind(){
-        return "Корова";
+        return "корова";
 
     }
     public String say(){

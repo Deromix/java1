@@ -49,7 +49,7 @@ public class TimeZone {
             else
                 sdvigk2 = Math.abs(k2.hours * 60 * 60 + k2.minutes * 60);
 
-            return super.secondsBetween(time) + Math.abs(sdvigk1 - sdvigk2);
+            return super.secondsBetween(time) + Math.abs(sdvigk1 + sdvigk2);
         }
 
 
@@ -59,9 +59,10 @@ public class TimeZone {
             ZonedTime t1 = new ZonedTime(2,4,3);
             ZonedTime t2 = new ZonedTime(1,2,3);
             System.out.println(t1.secondsBetween(t2));
+            ZonedTime zt1 = new ZonedTime(18, 39, 26, new TimeZone(1));
+            ZonedTime zt2 = new ZonedTime(20, 49, 57, new TimeZone(3));
+            System.out.println(zt1.secondsBetween(zt2));
         }
     }
-
-
 
 
