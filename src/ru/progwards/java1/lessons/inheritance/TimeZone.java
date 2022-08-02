@@ -48,16 +48,16 @@ public class TimeZone {
             else
                 sdvigk2 = Math.abs(k2.hours * 60 * 60 + k2.minutes * 60);
             if(zone.hours < 0)
-                return super.secondsBetween(time) - Math.abs(sdvigk1 + sdvigk2);
+                return super.secondsBetween(time) + Math.abs(sdvigk1 - sdvigk2);
             return super.secondsBetween(time) + Math.abs(sdvigk1 + sdvigk2);
         }
 
 
 
         public static void main(String[] args) {
-            ZonedTime zt1 = new ZonedTime(18, 39, 26, new TimeZone(-1, 2));
-            ZonedTime zt2 = new ZonedTime(20, 49, 57, new TimeZone(3));
-            System.out.println(zt1.secondsBetween(zt2));
+            ZonedTime zt1 = new ZonedTime(18, 0, 43, new TimeZone(-3, 12));
+            Time t1 = new Time(6, 47, 8);
+            System.out.println(zt1.secondsBetween(t1));
 
         }
     }
