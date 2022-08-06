@@ -54,12 +54,12 @@ public abstract class Animal {
         hay = FoodKind.valueOf("HAY");
         FoodKind corn = FoodKind.CORN;
         corn = FoodKind.valueOf("CORN");
-        if (getFoodKind() == hay)
+        if (getFoodKind() == corn)
+            return calculateFoodWeight() * 15;
+        else  {
             return calculateFoodWeight() * 2;
-        return calculateFoodWeight() * 15;
+        }
     }
-
-
 }
 
 class Cow extends Animal{
