@@ -18,6 +18,8 @@ public class TestAnimal {
         printAnimal(hum1);
         Hamster hum2 = new Hamster("Поликарп");
         printAnimal(hum2);
+        System.out.println("");
+        System.out.println("Тест для Animal, Cow, Hamster, Duck");
         hum1.setWeight(100);
         hum2.setWeight(100);
         System.out.println(hum1.compareTo(hum2));
