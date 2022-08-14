@@ -9,32 +9,30 @@ public class Matrix {
 
     public int maxInRow(int num) {
         int x = 0;
-        for (int i = 0; i < array[num].length; i++) {
+        for (int i = 0; i < array[num].length - 1; i++) {
             if (x < array[num][i]) {
                 x = array[num][i];
-
             }
-            return x;
         }
         return x;
     }
 
     public int maxInCol(int num) {
         int x = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length - 1; ) {
             if (x < array[i][num]) {
                 x = array[i][num];
             }
-            return x;
         }
         return x;
     }
 
     public int max() {
         int x = 0;
-        maxInRow(x);
-        for (int i = 0; i < array[i].length; i++) {
-            maxInCol(x++);
+        for (int i = 0; i < array.length - 1; i++) {
+            for(x = 0; x < array[i].length - 1; x++ ) {
+                maxInCol(x);
+            }
         }
         return x;
     }
@@ -60,6 +58,10 @@ public class Matrix {
             return null;
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
 
