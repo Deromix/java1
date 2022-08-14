@@ -36,7 +36,6 @@ public class Matrix {
         maxInRow(x);
         for (int i = 0; i < array[i].length; i++) {
             maxInCol(x++);
-            return x;
         }
         return x;
     }
