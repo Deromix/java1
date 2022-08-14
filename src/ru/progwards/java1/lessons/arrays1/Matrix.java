@@ -9,9 +9,10 @@ public class Matrix {
 
     public int maxInRow(int num) {
         int x = -100;
-        for (int i = 0; i < array[num].length - 1; i++) {
+        for (int i = 0; i < array[num].length - 1;) {
             if (x < array[num][i]) {
                 x = array[num][i];
+                i++;
             }
             return x;
         }
@@ -20,9 +21,10 @@ public class Matrix {
 
     public int maxInCol(int num) {
         int x = -100;
-        for (int i = 0; i < array.length - 1; i++ ) {
+        for (int i = 0; i < array.length - 1;) {
             if (x < array[i][num]) {
                 x = array[i][num];
+                i++;
             }
             return x;
         }
@@ -32,7 +34,7 @@ public class Matrix {
     public int max() {
         int x1 = 0;
         for (int i = 0; i < array.length - 1; i++) {
-            maxInCol(x1);
+            maxInCol(x1++);
         }
         return x1;
     }
