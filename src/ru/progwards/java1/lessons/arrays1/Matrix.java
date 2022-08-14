@@ -8,27 +8,26 @@ public class Matrix {
     }
 
     public int maxInRow(int num) {
+        int x = 0;
         for (int i = 0; i < array[num].length; i++) {
-            int x = 0;
             if (x < array[num][i]) {
                 x = array[num][i];
-                return x;
+
             }
             return x;
         }
-        return 0;
+        return x;
     }
 
     public int maxInCol(int num) {
+        int x = 0;
         for (int i = 0; i < array.length; i++) {
-            int x = 0;
             if (x < array[i][num]) {
                 x = array[i][num];
-                return x;
             }
             return x;
         }
-        return 0;
+        return x;
     }
 
     public int max() {
