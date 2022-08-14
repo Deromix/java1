@@ -19,7 +19,7 @@ public class Matrix {
 
     public int maxInCol(int num) {
         int x = 0;
-        for (int i = 1; i < array.length - 1; ) {
+        for (int i = 0; i < array.length - 1; i++ ) {
             if (x < array[i][num]) {
                 x = array[i][num];
             }
