@@ -12,7 +12,7 @@ public class Matrix {
         for (int i = 0; i < array[num].length - 1;) {
             if (x < array[num][i]) {
                 x = array[num][i];
-                i++;
+                i = i++;
             }
             return x;
         }
@@ -24,7 +24,7 @@ public class Matrix {
         for (int i = 0; i < array.length - 1;) {
             if (x < array[i][num]) {
                 x = array[i][num];
-                i++;
+                i = i++;
             }
             return x;
         }
