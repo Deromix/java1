@@ -8,35 +8,35 @@ public class Matrix {
     }
 
     public int maxInRow(int num) {
-        int x = -100;
-        for (int i = 0; i < array[num].length - 1;) {
-            if (x < array[num][i]) {
-                x = array[num][i];
-                i++;
-            }
-            return x;
+        int maxNum = Integer.MIN_VALUE;
+        for (int value : array[num])  {
+            if (value > maxNum)
+                maxNum = value;
         }
-        return x;
+        return maxNum;
     }
 
     public int maxInCol(int num) {
-        int x = -100;
-        for (int i = 0; i < array.length - 1;) {
-            if (x < array[i][num]) {
-                x = array[i][num];
-                i++;
-            }
-            return x;
+        int maxNum = Integer.MIN_VALUE;
+        int i;
+        for (i = 0; i < array.length; i++ )  {
+            if (array[i][num] > maxNum)
+                maxNum = array[i][num];
         }
-        return x;
-    }
+        return maxNum;
+        }
 
     public int max() {
-        int x1 = 0;
-        for (int i = 0; i < array.length - 1; i++) {
-            maxInCol(x1++);
+        int maxNum = Integer.MIN_VALUE;
+        int j = 0;
+        for(int i = 0; i < array.length; i++){
+            maxInRow(j);
+            if(maxNum < maxInRow(j)){
+                maxNum = maxInRow(j);
+            }
+            j++;
         }
-        return x1;
+        return maxNum;
     }
 
     public boolean isMatrix() {
@@ -60,6 +60,15 @@ public class Matrix {
             return null;
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        int [][]array = {{-2,31,3,14}, {4,37,0,12}, {10,6,3,36,32}};
+        Matrix ar1 = new Matrix(array);
+        System.out.println(ar1.maxInRow(1));
+        System.out.println(ar1.maxInCol(3));
+        System.out.println(ar1.max());
+
     }
 }
 
