@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class DIntArray {
     private int[] count;
 
-    public DIntArray(int[] array) {
+    public DIntArray() {
     }
 
     public void add(int num) {
@@ -28,13 +28,14 @@ public class DIntArray {
     }
 
     public void atDelete(int pos) {
-        int j = 0;
+        int i = 0;
         int[] countCopy = Arrays.copyOf(count, count.length);
-        for (j = pos; j < countCopy.length - 1; j++)
-            if (countCopy[j] == pos)
+        for (i = pos; i < countCopy.length - 1; i++) {
+            if (countCopy[i] == pos)
                 break;
-        for (int k = j; k < countCopy.length - 1; k++)
-            countCopy[k] = countCopy[k + 1];
+        }
+        for (int j = i; j < countCopy.length - 1; j++)
+            countCopy[j] = countCopy[j + 1];
     }
 
     public int at(int pos) {
