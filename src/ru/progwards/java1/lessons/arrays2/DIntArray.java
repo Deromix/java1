@@ -43,6 +43,4 @@ public class DIntArray {
         return Arrays.binarySearch(count, pos);
     }
 
-    public static void main(String[] args) {
-    }
 }
