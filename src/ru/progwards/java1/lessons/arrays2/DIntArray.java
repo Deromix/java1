@@ -9,8 +9,8 @@ public class DIntArray {
     }
 
     public void add(int num) {
-        int[] countCopy = Arrays.copyOf(count, count.length + 1);
-        countCopy[count.length + 1] = num;
+        int [] countCopy = Arrays.copyOf(count, count.length + 1);
+        countCopy[countCopy.length - 1] = num;
     }
 
     public void atInsert(int pos, int num) {
