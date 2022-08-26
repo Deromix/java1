@@ -24,10 +24,10 @@ public class Flower extends Animal{
     public double getFoodCoeff() {
         return 0;
     }
-
+    Color white = Color.WHITE;
     @Override
     public Color getColor() {
-        Color white = Color.WHITE;
+
         white = Color.valueOf("WHITE");
         return white;
     }
