@@ -1,6 +1,5 @@
 package ru.progwards.java1.lessons.interfaces1;
 
-import ru.progwards.java1.lessons.classescompare.Animal;
 
 class Duck extends Animal {
     FoodKind corn = FoodKind.CORN;
