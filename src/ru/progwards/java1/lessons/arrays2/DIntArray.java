@@ -11,6 +11,7 @@ public class DIntArray {
     public void add(int num) {
         int [] countCopy = Arrays.copyOf(count, count.length + 1);
         countCopy[countCopy.length - 1] = num;
+        count = countCopy;
     }
 
     public void atInsert(int pos, int num) {
@@ -39,7 +40,7 @@ public class DIntArray {
     }
 
     public int at(int pos) {
-        int[] countCopy = Arrays.copyOf(count, count.length);
-        return countCopy[pos];
+
+        return count[pos];
     }
 }
