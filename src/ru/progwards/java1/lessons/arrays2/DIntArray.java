@@ -39,8 +39,7 @@ public class DIntArray {
     }
 
     public int at(int pos) {
-        return count[pos];
+        int[] countCopy = Arrays.copyOf(count, count.length);
+        return countCopy[pos];
     }
-
-
 }
