@@ -60,12 +60,8 @@ public abstract class Animal implements IColor{
             return calculateFoodWeight() * 2;
         }
     }
-    public enum Color {
-        GRAY,
-        WHITE,
-        RED,
-        BEIGE
-    }
+
+
 
     abstract public Color getColor();
 }
