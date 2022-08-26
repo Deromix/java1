@@ -26,10 +26,8 @@ class Hamster extends Animal {
         return 0.06;
     }
 
-    Color beige = Color.BEIGE;
-    public Color getColor(){
-        beige = Color.valueOf("BEIGE");
-        return beige;
+    public Color getColor() {
+        return Color.BEIGE;
     }
 }
 

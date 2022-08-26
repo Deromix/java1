@@ -25,9 +25,7 @@ class Duck extends Animal {
         return 0.04;
     }
 
-    Color gray = Color.GRAY;
-    public Color getColor(){
-        gray = Color.valueOf("GRAY");
-        return gray;
+    public Color getColor() {
+        return Color.GRAY;
     }
 }

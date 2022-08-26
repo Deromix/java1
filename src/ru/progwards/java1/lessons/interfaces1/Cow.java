@@ -25,9 +25,8 @@ class Cow extends Animal {
         return 0.05;
     }
 
-    Color red = Color.RED;
-    public Color getColor(){
-        red = Color.valueOf("RED");
-        return red;
+
+    public Color getColor() {
+        return Color.RED;
     }
 }
