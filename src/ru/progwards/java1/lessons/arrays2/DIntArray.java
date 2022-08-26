@@ -39,8 +39,8 @@ public class DIntArray {
     }
 
     public int at(int pos) {
-        Arrays.sort(count);
         return Arrays.binarySearch(count, pos);
     }
+
 
 }
