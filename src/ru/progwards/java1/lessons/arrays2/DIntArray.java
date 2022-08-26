@@ -3,13 +3,13 @@ package ru.progwards.java1.lessons.arrays2;
 import java.util.Arrays;
 
 public class DIntArray {
-    private int[] count ;
+    private int[] count  = {};
 
     public DIntArray() {
     }
 
     public void add(int num) {
-        int [] countCopy = Arrays.copyOf(this.count, this.count.length + 1);
+        int [] countCopy = Arrays.copyOf(count, count.length + 1);
         countCopy[countCopy.length - 1] = num;
     }
 
