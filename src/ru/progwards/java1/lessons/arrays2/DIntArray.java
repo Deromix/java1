@@ -26,6 +26,7 @@ public class DIntArray {
                 j++;
             }
         }
+        count = countCopy;
     }
 
     public void atDelete(int pos) {
@@ -35,12 +36,13 @@ public class DIntArray {
             if (countCopy[i] == pos)
                 break;
         }
-        for (int j = i; j < countCopy.length - 1; j++)
+        for (int j = i; j < countCopy.length - 1; j++){
             countCopy[j] = countCopy[j + 1];
+        }
+        count = countCopy;
     }
 
     public int at(int pos) {
-
         return count[pos];
     }
 }
