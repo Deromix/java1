@@ -39,7 +39,7 @@ public class DIntArray {
     }
 
     public int at(int pos) {
-        return Arrays.binarySearch(count, pos);
+        return count[pos];
     }
 
 
