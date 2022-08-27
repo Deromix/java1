@@ -3,8 +3,8 @@ package ru.progwards.java1.lessons.interfaces1;
 
 class Duck extends Animal {
     FoodKind corn = FoodKind.CORN;
-    public Duck(String name) {
-        super(name);
+    public Duck(String name , double weight) {
+        super(name,weight);
     }
     @Override
     public String kind(){
