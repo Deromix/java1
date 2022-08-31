@@ -2,7 +2,7 @@ package ru.progwards.java1.lessons.interfaces2;
 
 
 
-public abstract class Animal implements Comparable<Animal>, IColor, Home {
+public abstract class Animal implements Comparable<Animal>, IColor, Home, ToString {
     String name;
     double weight;
 
@@ -12,6 +12,10 @@ public abstract class Animal implements Comparable<Animal>, IColor, Home {
     }
     public abstract String kind();
     public abstract String say();
+
+    public String getString(){
+        return toString();
+    }
     @Override
     public String toString() {
         return "Это " + kind() + " " + this.name + " " + this.weight + " " + this.getColor();
