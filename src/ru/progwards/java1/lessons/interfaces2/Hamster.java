@@ -1,13 +1,17 @@
 package ru.progwards.java1.lessons.interfaces2;
 
 
-
-
 class Hamster extends Animal {
     FoodKind corn = FoodKind.CORN;
-    Hamster(String name, double weight) {
+    public Hamster(String name) {
+        super(name);
+    }
+
+    public Hamster(String name, double weight) {
         super(name, weight);
     }
+
+    public Hamster() {}
     @Override
     public String kind(){
         return "хомяк";

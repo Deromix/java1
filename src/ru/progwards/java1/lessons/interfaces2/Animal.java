@@ -5,9 +5,16 @@ public abstract class Animal implements Comparable<Animal>, IColor, Home, ToStri
     String name;
     double weight;
 
+    public Animal(String name) {
+        this.name = name;
+    }
+
     public Animal(String name, double weight) {
         this.name = name;
         this.weight = weight;
+    }
+
+    public Animal () {
     }
     public abstract String kind();
     public abstract String say();

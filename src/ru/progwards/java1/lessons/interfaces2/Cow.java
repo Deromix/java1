@@ -5,9 +5,15 @@ package ru.progwards.java1.lessons.interfaces2;
 
 class Cow extends Animal {
     FoodKind hay = FoodKind.HAY;
-    public Cow(String name , double weight) {
-        super(name,weight);
+    public Cow(String name) {
+        super(name);
     }
+
+    public Cow(String name, double weight) {
+        super(name, weight);
+    }
+
+    public Cow() {}
     @Override
     public String kind(){
         return "корова";
