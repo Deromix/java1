@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 
 public class FloatNumber {
-        String exp;
-        String mantissa;
+        int exp;
+        long mantissa;
         boolean sign;
 
     public FloatNumber(String number) {
@@ -16,11 +16,11 @@ public class FloatNumber {
 
         //Разделить строку на мантиссу и степень числа.
         int i = temp.indexOf('E');
-        exp = temp.substring(i + 1);
-        mantissa = temp.substring(0, i);
+        exp = Integer.parseInt(temp.substring(i + 1));
+        mantissa = Long.parseLong(temp.substring(0, i));
 
         //Да, ещё знак нужен.
-        String s = mantissa.charAt(0) == '-' ? "-" : "";
+        String s = String.valueOf(mantissa).charAt(0) == '-' ? "-" : "";
         sign = !s.equals("-");
 
     }
@@ -48,24 +48,24 @@ public class FloatNumber {
             if (ex != -1) { //есть степень e
 
                 if (dot != -1) { // есть точка
-                    exp = d.substring(ex + 1);
+                    exp = Integer.parseInt(d.substring(ex + 1));
                     String tmp = d.substring(0, dot);
-                    mantissa = String.valueOf(Long.parseLong(tmp + d.substring(dot + 1, ex)));
+                    mantissa = Long.parseLong(tmp + d.substring(dot + 1, ex));
                 } else { // есть е и нет точки
-                    exp = d.substring(ex + 1);
-                    mantissa = String.valueOf(Long.parseLong(d.substring(0, ex)));
+                    exp = Integer.parseInt(d.substring(ex + 1));
+                    mantissa = Long.parseLong(d.substring(0, ex));
                 }
             } else { // нет е
                 if (dot != -1) { // нет е, но есть точка
                     if (chars[0] == '0')
-                        exp = String.valueOf(-1); // сдвиг точки вправо
+                        exp = -1; // сдвиг точки вправо
                     else
-                        exp = String.valueOf(dot - 1); // длина строки минус 1 цифра и точка
+                        exp = dot - 1; // длина строки минус 1 цифра и точка
                     String tmp = d.substring(0, dot);
-                    mantissa = String.valueOf(Long.parseLong(tmp + d.substring(dot + 1)));
+                    mantissa = Long.parseLong(tmp + d.substring(dot + 1));
                 } else { // нет е и нет точки
-                    exp = String.valueOf(chars.length - 1);
-                    mantissa = String.valueOf(Long.parseLong(d));
+                    exp = chars.length - 1;
+                    mantissa = Long.parseLong(d);
                 }
             }
         }
@@ -75,24 +75,24 @@ public class FloatNumber {
             int ex = d.indexOf("E");
             if (ex != -1) { //есть степень e
                 if (dot != -1) { // есть точка
-                    exp = d.substring(ex + 1);
+                    exp = Integer.parseInt(d.substring(ex + 1));
                     String tmp = d.substring(1, dot);
-                    mantissa = String.valueOf(Long.parseLong(tmp + d.substring(dot + 1, ex)));
+                    mantissa = Long.parseLong(tmp + d.substring(dot + 1, ex));
                 } else { // есть е и нет точки
-                    exp = d.substring(ex + 1);
-                    mantissa = String.valueOf(Long.parseLong(d.substring(1, ex)));
+                    exp = Integer.parseInt(d.substring(ex + 1));
+                    mantissa = Long.parseLong(d.substring(1, ex));
                 }
             } else { // нет е
                 if (dot != -1) { // нет е, но есть точка
                     if (chars[1] == '0')
-                        exp = String.valueOf(-1); // сдвиг точки вправо
+                        exp = -1; // сдвиг точки вправо
                     else
-                        exp = String.valueOf(dot - 1); // длина строки минус 1 цифра и точка
+                        exp = dot - 1; // длина строки минус 1 цифра и точка
                     String tmp = d.substring(1, dot);
-                    mantissa = String.valueOf(Long.parseLong(tmp + d.substring(dot + 1)));
+                    mantissa = Long.parseLong(tmp + d.substring(dot + 1));
                 } else { // нет е и нет точки
-                    exp = String.valueOf(chars.length - 1);
-                    mantissa = String.valueOf(Long.parseLong(d));
+                    exp = chars.length - 1;
+                    mantissa = Long.parseLong(d);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class FloatNumber {
 
     public static void negative(FloatNumber num){
         double x = toDouble(num) * -1;
-        num.mantissa = String.valueOf(x);
+        num.mantissa = (long)x;
     }
 
     public  FloatNumber add(FloatNumber num){
@@ -130,8 +130,8 @@ public class FloatNumber {
             double x = toDouble(fn3);
             System.out.println(x);
             FloatNumber fn2 = new FloatNumber( "12e7");
-            System.out.println(fn3.add(fn2).toString());
+            System.out.println(fn3.add(fn2));
             negative(fn2);
-            System.out.println(fn2.toString());
+            System.out.println(fn2);
         }
     }
