@@ -36,12 +36,9 @@ public class FloatNumber {
             return mantissa + "E" + exp;
         }
 
-        static Double toDouble(FloatNumber floatNumber) {
-            int p =  floatNumber.toString().indexOf("+");
-            String i = floatNumber.toString().substring(0, p);
-            String y = floatNumber.toString().substring(p+1);
-            String iy = i + y;
-            double d = Double.parseDouble(iy);
+        Double toDouble() {
+            String s = String.valueOf(mantissa + exp);
+            double d = Double.parseDouble(s);
             return d;
         }
     public void fromDouble(double num) {
@@ -104,22 +101,22 @@ public class FloatNumber {
         }
     }
 
-    public static void negative(FloatNumber num){
-        double x = toDouble(num) * -1;
-        num.mantissa = (long)x;
+    public void negative(){
+        double x = this.mantissa * -1;
+        this.mantissa = (long)x;
     }
 
     public  FloatNumber add(FloatNumber num){
-        double a = toDouble(num) + toDouble(this);
+        double a = num.toDouble() + this.toDouble();
 
         FloatNumber fn1 = new FloatNumber(String.valueOf(a));
         return fn1;
     }
 
     public FloatNumber sub(FloatNumber num){
-        double s1 = toDouble(num);
-        negative(num);
-        double s2 = toDouble(num);
+        double s1 = num.toDouble();
+        num.negative();
+        double s2 = num.toDouble();
         double s = s1 + s2;
         FloatNumber fn1 = new FloatNumber(String.valueOf(s));
         return fn1;
@@ -133,11 +130,11 @@ public class FloatNumber {
             System.out.println(new FloatNumber(" 123"));
             System.out.println(new FloatNumber(" 0"));
             FloatNumber fn3 = new FloatNumber(" -123.45456E7");
-            double x = toDouble(fn3);
+            double x = fn3.toDouble();
             System.out.println(x);
             FloatNumber fn2 = new FloatNumber( "12e7");
             System.out.println(fn3.add(fn2));
-            negative(fn2);
+            fn2.negative();
             System.out.println(fn2);
         }
     }
