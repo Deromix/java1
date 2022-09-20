@@ -9,6 +9,12 @@ public class FloatNumber {
         long mantissa;
         boolean sign;
 
+    public FloatNumber(boolean sing, long mantissa, int exp){
+        this.sign = sign;
+        this.mantissa = mantissa;
+        this.exp = exp;
+    }
+
     public FloatNumber(String number) {
         //Привести число к нужному формату.
         double d = Double.parseDouble(number);
