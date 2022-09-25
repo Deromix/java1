@@ -1,140 +1,102 @@
 package ru.progwards.java1.lessons.params;
 
-
-import java.util.Arrays;
-
-
 public class FloatNumber {
-        int exp;
-        long mantissa;
-        boolean sign;
+    boolean sign;   // - знак (+/-)
+    long mantissa;  // - мантиса (всегда положительная)
+    int exp;        // - порядок - 10 в степени exp
 
-    public FloatNumber(boolean sing, long mantissa, int exp){
+    public FloatNumber(boolean sign, long mantissa, int exp) {
         this.sign = sign;
         this.mantissa = mantissa;
         this.exp = exp;
     }
 
+    /*
+    Принимает String и сохраняет  знак, мантиссу и порядок отдельно.
+    Разбор строки сделать самостоятельно, поддержать формат:
+            [+|-]9[.9][E9]
+    */
     public FloatNumber(String number) {
         //Привести число к нужному формату.
         double d = Double.parseDouble(number);
-        String temp = String.format("%1E",d).replace(',','.');
+        String temp = String.format("%1E", d).replace(',', '.');
 
-        //Разделить строку на мантиссу и степень числа.
-        int i = temp.indexOf('E');
-        exp = Integer.parseInt(temp.substring(i + 1));
-        mantissa = Long.parseLong(temp.substring(0, i));
+        //знак.
+        sign = temp.charAt(0) == '-' ? false : true;
+        //убрать минус из строки
+        if (!sign)
+            temp = temp.replace('-', ' ').trim();
 
-        //Да, ещё знак нужен.
-        String s = String.valueOf(mantissa).charAt(0) == '-' ? "-" : "";
-        sign = !s.equals("-");
+        // разделить на 2 строки: мантисса и степень.
+        String[] s = temp.split("E");
+        exp = Integer.parseInt(s[1]);
+
+        //Если первая цифра в мантиcce не 0, сдвинуть вправо, убрать точку, увеличить степень.
+        if (s[0].charAt(0) != '0') {
+            s[0] = s[0].substring(0, 1) + s[0].substring(2);
+            exp++;
+        } else
+            s[0] = s[0].substring(2);
+
+        mantissa = Long.parseLong(s[0]);
 
     }
 
-        @Override
-        public String toString() {
-            return mantissa + "E" + exp;
-        }
+    /*
+        Приводит число к строке, выводить в формате:
 
-        Double toDouble() {
-            String s = String.valueOf(mantissa + exp);
-            double d = Double.parseDouble(s);
-            return d;
-        }
+                [-]1[.9][E9]
+
+        где 1 это всегда одна цифра
+        остальные значащие цифры выводить после точки
+        если порядок == 0, то его не выводить, во всех остальных случаях он должен быть
+        знак + не выводить
+    */
+    @Override
+    public String toString() {
+        String res = sign ? "0." : "-0.";
+        res = res + Long.toString(mantissa);
+        if (exp > 0)
+            res = res + "E" + Integer.toString(exp);
+
+        return res;
+    }
+
+    public double toDouble() {
+        return Double.valueOf(toString());
+    }
+
+    /*
+    принимает double и сохраняет  знак, мантиссу и порядок отдельно.
+     */
     public void fromDouble(double num) {
-        String d = String.valueOf(num);
-        char[] chars = d.toCharArray();
-        if (chars[0] != '-') { // положительное число
-            this.sign = true;
-            int dot = d.indexOf(".");
-            int ex = d.indexOf("E");
-            if (ex != -1) { //есть степень e
-
-                if (dot != -1) { // есть точка
-                    exp = Integer.parseInt(d.substring(ex + 1));
-                    String tmp = d.substring(0, dot);
-                    mantissa = Long.parseLong(tmp + d.substring(dot + 1, ex));
-                } else { // есть е и нет точки
-                    exp = Integer.parseInt(d.substring(ex + 1));
-                    mantissa = Long.parseLong(d.substring(0, ex));
-                }
-            } else { // нет е
-                if (dot != -1) { // нет е, но есть точка
-                    if (chars[0] == '0')
-                        exp = -1; // сдвиг точки вправо
-                    else
-                        exp = dot - 1; // длина строки минус 1 цифра и точка
-                    String tmp = d.substring(0, dot);
-                    mantissa = Long.parseLong(tmp + d.substring(dot + 1));
-                } else { // нет е и нет точки
-                    exp = chars.length - 1;
-                    mantissa = Long.parseLong(d);
-                }
-            }
-        }
-        if (chars[0] == '-') { // отрицательное число
-            this.sign = false;
-            int dot = d.indexOf(".");
-            int ex = d.indexOf("E");
-            if (ex != -1) { //есть степень e
-                if (dot != -1) { // есть точка
-                    exp = Integer.parseInt(d.substring(ex + 1));
-                    String tmp = d.substring(1, dot);
-                    mantissa = Long.parseLong(tmp + d.substring(dot + 1, ex));
-                } else { // есть е и нет точки
-                    exp = Integer.parseInt(d.substring(ex + 1));
-                    mantissa = Long.parseLong(d.substring(1, ex));
-                }
-            } else { // нет е
-                if (dot != -1) { // нет е, но есть точка
-                    if (chars[1] == '0')
-                        exp = -1; // сдвиг точки вправо
-                    else
-                        exp = dot - 1; // длина строки минус 1 цифра и точка
-                    String tmp = d.substring(1, dot);
-                    mantissa = Long.parseLong(tmp + d.substring(dot + 1));
-                } else { // нет е и нет точки
-                    exp = chars.length - 1;
-                    mantissa = Long.parseLong(d);
-                }
-            }
-        }
+        FloatNumber fn = new FloatNumber(Double.toString(num));
+        sign = fn.sign;
+        mantissa = fn.mantissa;
+        exp = fn.exp;
     }
 
-    public void negative(){
-        double x = this.mantissa * -1;
-        this.mantissa = (long)x;
+    public void negative() {
+        sign = !sign;
     }
 
-    public  FloatNumber add(FloatNumber num){
-        double a = num.toDouble() + this.toDouble();
-
-        FloatNumber fn1 = new FloatNumber(String.valueOf(a));
-        return fn1;
+    public FloatNumber add(FloatNumber num) {
+        return new FloatNumber(Double.toString(toDouble() + num.toDouble()));
     }
 
-    public FloatNumber sub(FloatNumber num){
-        double s1 = num.toDouble();
-        num.negative();
-        double s2 = num.toDouble();
-        double s = s1 + s2;
-        FloatNumber fn1 = new FloatNumber(String.valueOf(s));
-        return fn1;
+    public FloatNumber sub(FloatNumber num) {
+        return new FloatNumber(Double.toString(toDouble() - num.toDouble()));
     }
 
+    public static void main(String[] args) {
+        System.out.println(new FloatNumber("-0.45456e7"));
+        System.out.println(new FloatNumber("-123.45456e7"));
+        System.out.println(new FloatNumber("-12e7"));
+        System.out.println(new FloatNumber(" -123.45456"));
+        System.out.println(new FloatNumber(" 123"));
+        System.out.println(new FloatNumber(" 0"));
 
-        public static void main(String[] args) {
-            System.out.println(new FloatNumber("-123.45456e7"));
-            System.out.println(new FloatNumber("-12e7"));
-            System.out.println(new FloatNumber(" -123.45456"));
-            System.out.println(new FloatNumber(" 123"));
-            System.out.println(new FloatNumber(" 0"));
-            FloatNumber fn3 = new FloatNumber(" -123.45456E7");
-            double x = fn3.toDouble();
-            System.out.println(x);
-            FloatNumber fn2 = new FloatNumber( "12e7");
-            System.out.println(fn3.add(fn2));
-            fn2.negative();
-            System.out.println(fn2);
-        }
+        System.out.println(new FloatNumber("8.5").sub(new FloatNumber("1.2")));
+
     }
+}
