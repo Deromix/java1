@@ -33,7 +33,7 @@ public class FloatNumber {
 
         //Если первая цифра в мантиcce не 0, сдвинуть вправо, убрать точку, увеличить степень.
         if (s[0].charAt(0) != '0') {
-            s[0] = s[0].substring(0, 1) + s[0].substring(2);
+            s[0] = s[0].substring(0, 1) + "." + s[0].substring(2);
             exp++;
         } else
             s[0] = s[0].substring(2);
@@ -54,10 +54,15 @@ public class FloatNumber {
     */
     @Override
     public String toString() {
-        String res = sign ? "0." : "-0.";
-        res = res + Long.toString(mantissa);
+        String res;
+        if (!sign) {
+            res = "-";
+        }else {
+            res = "";
+        }
+        res = res + mantissa;
         if (exp > 0)
-            res = res + "E" + Integer.toString(exp);
+            res = res + "E" + exp;
 
         return res;
     }
@@ -89,11 +94,10 @@ public class FloatNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(new FloatNumber("-0.45456e7"));
-        System.out.println(new FloatNumber("-123.45456e7"));
+        System.out.println(new FloatNumber("123.45456e7"));
         System.out.println(new FloatNumber("-12e7"));
         System.out.println(new FloatNumber(" -123.45456"));
-        System.out.println(new FloatNumber(" 123"));
+        System.out.println(new FloatNumber("123"));
         System.out.println(new FloatNumber(" 0"));
 
         System.out.println(new FloatNumber("8.5").sub(new FloatNumber("1.2")));
