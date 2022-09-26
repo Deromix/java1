@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class ArrayInteger {
     byte[] digits;
     ArrayInteger(int n) {
-        char [] chars = String.valueOf(n).toCharArray();
-        digits = new byte[chars.length];
-        for (int i = 0; i < digits.length; i++) {
+        char [] chars = String.valueOf(n).toCharArray();   // переводим n  массив char, чтобы узнать длинну
+        digits = new byte[chars.length];   // присваиваем массиву digits длиннну
+        for (int i = 0; i < digits.length; i++) {   // заполняем массив
             digits[i] = (byte) (n % 10);
             n = n / 10;
         }
@@ -27,24 +27,21 @@ public class ArrayInteger {
     }
 
     boolean add(ArrayInteger num){
-        for (int i = 0; i < num.digits.length; i++){
-            num.digits[i] = (byte) (num.digits[i] + this.digits[i]);
+        for (int i = 0; i < this.digits.length; i++){    // сложение значений массивов и сохранение в исходный объект
+            this.digits[i] = (byte) (this.digits[i] + num.digits[i]);
         }
-        for(int i = 0; i < num.digits.length; i++){
-            if(num.digits[i] >= 10 )
+        for(int i = 0; i < this.digits.length; i++){    // проверка на переполнение
+            if(this.digits[i] >= 10 )
                 return false;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        ArrayInteger ai1 = new ArrayInteger(123);
-        ArrayInteger ai2 = new ArrayInteger(321);
+        ArrayInteger ai1 = new ArrayInteger(10767558);
+        ArrayInteger ai2 = new ArrayInteger(10767558);
         System.out.println(ai1.toString());
-        ai1.add(ai2);
-        System.out.println(ai2);
-
-
-
+        System.out.println(ai1.add(ai2));
+        System.out.println(ai1);
     }
 }
