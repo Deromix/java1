@@ -1,47 +1,67 @@
 package ru.progwards.java1.lessons.params;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class ArrayInteger {
-    byte[] digits;
-    ArrayInteger(int n) {
-        char [] chars = String.valueOf(n).toCharArray();   // переводим n  массив char, чтобы узнать длинну
-        digits = new byte[chars.length];   // присваиваем массиву digits длиннну
-        for (int i = 0; i < digits.length; i++) {   // заполняем массив
-            digits[i] = (byte) (n % 10);
-            n = n / 10;
-        }
+    private final byte[] digits;
+
+    public ArrayInteger(int n) {
+        digits = new byte[n];
+        Arrays.fill(digits, (byte) 0);
     }
 
-    void fromString(String value){
-        digits = Arrays.copyOf(digits, digits.length + 1);
-        digits[digits.length - 1] = Byte.parseByte(value);
+    public void fromString(String value) {
+        byte[] temp = value.getBytes(StandardCharsets.UTF_8);
+        if (digits.length < temp.length)
+            return;
+
+        for (int i = 0; i < temp.length; i++) {
+            digits[i] = (byte) (temp[temp.length - 1 - i] - 48);
+        }
     }
 
     @Override
-    public String toString(){
-        return Arrays.toString(digits);
-    }
-    public byte[] getDigits(){
-        return digits;
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for (byte digit : digits) {
+            res.insert(0, String.valueOf(digit));
+        }
+        return res.toString();
     }
 
-    boolean add(ArrayInteger num){
-        for (int i = 0; i < this.digits.length; i++){    // сложение значений массивов и сохранение в исходный объект
-            this.digits[i] = (byte) (this.digits[i] + num.digits[i]);
+    boolean add(ArrayInteger num) {
+        if (digits.length < num.digits.length) {
+            Arrays.fill(digits, (byte) 0);
+            return false;
         }
-        for(int i = 0; i < this.digits.length; i++){    // проверка на переполнение
-            if(this.digits[i] >= 10 )
-                return false;
+
+        byte k = 0;
+        for (int i = 0; i < num.digits.length; i++) {
+            digits[i] = (byte) (digits[i] + num.digits[i] + k);
+            k = (byte) (digits[i] > 9 ? 1 : 0);
+            digits[i] = k == 1 ? (byte) (digits[i] - 10) : digits[i];
         }
-        return true;
+
+        if (k == 0)
+            return true;
+        else {
+            Arrays.fill(digits, (byte) 0);
+            return false;
+        }
     }
+
 
     public static void main(String[] args) {
-        ArrayInteger ai1 = new ArrayInteger(10767558);
-        ArrayInteger ai2 = new ArrayInteger(10767558);
-        System.out.println(ai1.toString());
-        System.out.println(ai1.add(ai2));
-        System.out.println(ai1);
+        ArrayInteger num = new ArrayInteger(10);
+        System.out.println(num);
+        num.fromString("10");
+        System.out.println(Arrays.toString(num.digits));
+        System.out.println(num);
+        ArrayInteger num3 = new ArrayInteger(4);
+        num3.fromString("90");
+        System.out.println(num3);
+        num.add(num3);
+        System.out.println(num);
     }
 }
